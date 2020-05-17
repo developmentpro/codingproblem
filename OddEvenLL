@@ -4,22 +4,22 @@ public:
         ListNode *o = new ListNode(0); //odd no. LL
         ListNode* e = new ListNode(0); //even no. LL
         ListNode *o1 = o,*e1 = e,*t = head;
-        int cnt = 1;
+        int cnt = 1;     //tell the current node number
         while(t!=NULL){
             ListNode* temp = t->next;
-            if(cnt%2!=0){
+            if(cnt%2!=0){   //if cur_node no. is odd
                 o1->next = t;
                 t->next = NULL;
                 o1 = t;
             }
-            else{
+            else{           //if cur_node no. is even
                 e1->next = t;
                 t->next = NULL;
                 e1 = t;
             }
             cnt++; t = temp;
         }
-        o1->next = e->next;
-        return o->next;
+        o1->next = e->next; //connect even list at the end of odd list
+        return o->next; 
     }
 };
