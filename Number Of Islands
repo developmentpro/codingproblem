@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void func(vector<vector<char>>& grid,int& n,int& m,int i,int j){
+        if(i==n||i<0||j==m||j<0) return;
+        if(grid[i][j]=='0') return;
+        grid[i][j] = '0';
+        func(grid,n,m,i,j+1); //right dire
+        func(grid,n,m,i,j-1); //left dire
+        func(grid,n,m,i+1,j); //downward dire
+        func(grid,n,m,i-1,j); //upward dire
+        return;
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int n = grid.size(),m = grid[0].size();
+        int ans = 0;
+        if(n==0) return 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1'){
+                    func(grid,n,m,i,j);
+                    ans++;
+                }
+            }
+        }
+        return ans;
+    }
+};
